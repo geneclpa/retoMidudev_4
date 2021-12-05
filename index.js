@@ -21,24 +21,36 @@ Challenges: 4
     Ten en cuenta que el árbol es un string y necesitas los saltos de línea \n para cada línea para que se forme bien el árbol.
 */
 
-let heigth = 7;
-let guiones = heigth * 2;
-let tree = '';
-let counter = 1;
+function createXmasTree(height) {
+    if(height > 0 && height <= 100){
+        let altura = height;
+        let guiones = altura * 2;
+        let tree = '';
+        let counter = 1;
 
-for(let i = 0; i < heigth; i++){
-    if(heigth === 1){
-        tree += '_'.repeat(heigth) + '*'.repeat(counter) + '_'.repeat(heigth) + '\n';
+        for(let i = 0; i < altura; i++){
+            if(altura === 1){
+                tree += ' ' + '_'.repeat(altura) + '*'.repeat(counter) + '_'.repeat(altura) + '\n';
+            }else{
+                tree += ' ' + '_'.repeat((Math.round(guiones) / 2) - 1) + '*'.repeat(counter) + '_'.repeat((Math.round(guiones) / 2) - 1) + '\n';
+                guiones = Math.round(guiones) - 2;
+                counter = counter + 2;
+            }
+        }
+
+        for(let i = 0; i < 2; i++){
+            if(altura === 1){
+                tree += ' ' + '_'.repeat(altura) + '#' + '_'.repeat(altura) + '\n';
+            }else{
+                tree += ' ' + '_'.repeat(altura - 1) + '#' + '_'.repeat(altura - 1) + '\n';
+            }
+        }
+
+        console.log(tree);
+
     }else{
-        tree += '_'.repeat(Math.round(guiones) / 2) + '*'.repeat(counter) + '_'.repeat(Math.round(guiones) / 2) + '\n';
-        guiones = Math.round(guiones) - 2;
-        counter = counter + 2;
+        tree = "El número de pisos del árbol debe estar entre 0 y 100";
     }
 }
 
-for(let i = 0; i < 2; i++){
-    if(heigth === 1) heigth = 2;
-    tree += '_'.repeat(heigth) + '#' + '_'.repeat(heigth) + '\n';
-}
-
-console.log(tree);
+createXmasTree(5);
